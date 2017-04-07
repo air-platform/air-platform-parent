@@ -1,0 +1,426 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.2.RELEASE</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+
+	<groupId>net.aircommunity</groupId>
+	<artifactId>air-platform-parent</artifactId>
+	<packaging>pom</packaging>
+	<version>0.1.0</version>
+
+	<name>Air Community Platform Parent</name>
+	<url>http://101.200.121.138:3000/airs/air-platform-parent</url>
+	<description>Air Community Platform Parent</description>
+	<inceptionYear>2017</inceptionYear>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.test.skip>true</maven.test.skip>
+		<additionalparam>-Xdoclint:none</additionalparam>
+		<main.dir>${basedir}</main.dir>
+
+		<java.source.version>1.8</java.source.version>
+		<java.target.version>1.8</java.target.version>
+
+		<guava.version>21.0</guava.version>
+		<okhttp.version>3.5.0</okhttp.version>
+
+		<!-- spec -->
+		<javax.mail.version>1.4</javax.mail.version>
+		<validation.version>1.1.0.Final</validation.version>
+
+		<!-- rest -->
+		<undertow.version>1.4.7.Final</undertow.version>
+		<jose4j.version>0.5.4</jose4j.version>
+		<resteasy.version>3.1.2.Final</resteasy.version>
+		<mime4j.version>0.6</mime4j.version>
+		<bval.version>1.1.2</bval.version>
+		<swagger.version>1.5.10</swagger.version>
+
+		<!-- JSR specs -->
+		<jsr305.version>3.0.0</jsr305.version>
+
+		<!-- code quality -->
+		<findbugs.version>2.5.2</findbugs.version>
+		<checkstyle.version>2.9.1</checkstyle.version>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>alimaven</id>
+			<name>aliyun maven</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+		</repository>
+		<repository>
+			<id>spring-releases</id>
+			<name>Spring releases</name>
+			<url>https://repo.spring.io/release/</url>
+		</repository>
+	</repositories>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- ######## -->
+			<!-- jsr spec -->
+			<!-- ######## -->
+			<dependency>
+				<groupId>com.google.code.findbugs</groupId>
+				<artifactId>jsr305</artifactId>
+				<version>${jsr305.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.mail</groupId>
+				<artifactId>mail</artifactId>
+				<version>${javax.mail.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.validation</groupId>
+				<artifactId>validation-api</artifactId>
+				<version>${validation.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.ws.rs</groupId>
+				<artifactId>javax.ws.rs-api</artifactId>
+				<version>${jaxrs.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>${guava.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.squareup.okhttp3</groupId>
+				<artifactId>okhttp</artifactId>
+				<version>${okhttp.version}</version>
+			</dependency>
+
+
+			<!-- ###### -->
+			<!-- REST -->
+			<!-- ###### -->
+			<dependency>
+				<groupId>io.undertow</groupId>
+				<artifactId>undertow-core</artifactId>
+				<version>${undertow.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.undertow</groupId>
+				<artifactId>undertow-servlet</artifactId>
+				<version>${undertow.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.undertow</groupId>
+				<artifactId>undertow-websockets-jsr</artifactId>
+				<version>${undertow.version}</version>
+			</dependency>
+			<!-- resteasy undertow jax-rs -->
+			<dependency>
+				<groupId>org.jboss.resteasy</groupId>
+				<artifactId>resteasy-jaxrs</artifactId>
+				<version>${resteasy.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.jboss.logging</groupId>
+						<artifactId>jboss-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.resteasy</groupId>
+				<artifactId>resteasy-spring</artifactId>
+				<version>${resteasy.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.jboss.logging</groupId>
+						<artifactId>jboss-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.resteasy</groupId>
+				<artifactId>resteasy-undertow</artifactId>
+				<version>${resteasy.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.resteasy</groupId>
+				<artifactId>resteasy-jackson2-provider</artifactId>
+				<version>${resteasy.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.bitbucket.b_c</groupId>
+				<artifactId>jose4j</artifactId>
+				<version>${jose4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.james</groupId>
+				<artifactId>apache-mime4j</artifactId>
+				<version>${mime4j.version}</version>
+			</dependency>
+
+			<!-- bean validation provider -->
+			<dependency>
+				<groupId>org.apache.bval</groupId>
+				<artifactId>bval-core</artifactId>
+				<version>${bval.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.bval</groupId>
+				<artifactId>bval-jsr</artifactId>
+				<version>${bval.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>com.sun.xml.bind</groupId>
+						<artifactId>jaxb-impl</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>javax.xml.bind</groupId>
+						<artifactId>jaxb-api</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>io.swagger</groupId>
+				<artifactId>swagger-jaxrs</artifactId>
+				<version>${swagger.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>javax.ws.rs</groupId>
+						<artifactId>jsr311-api</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>${java.source.version}</source>
+						<target>${java.target.version}</target>
+						<compilerVersion>${java.source.version}</compilerVersion>
+						<fork>true</fork>
+						<optimize>true</optimize>
+						<showWarnings>true</showWarnings>
+						<showDeprecation>true</showDeprecation>
+						<showWarnings>true</showWarnings>
+						<compilerArgument>-Xlint:-options</compilerArgument>
+						<meminitial>256m</meminitial>
+						<maxmem>1024m</maxmem>
+						<excludes>
+							<exclude>**/package-info.java</exclude>
+						</excludes>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>pl.project13.maven</groupId>
+					<artifactId>git-commit-id-plugin</artifactId>
+					<executions>
+						<execution>
+							<goals>
+								<goal>revision</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<dateFormat>yyyyMMddHHmmss</dateFormat>
+						<verbose>true</verbose>
+						<dotGitDirectory>${project.basedir}/.git</dotGitDirectory>
+						<skipPoms>false</skipPoms>
+						<generateGitPropertiesFile>false</generateGitPropertiesFile>
+						<generateGitPropertiesFilename>git.properties</generateGitPropertiesFilename>
+						<failOnNoGitDirectory>true</failOnNoGitDirectory>
+						<gitDescribe>
+							<!-- don't generate the describe property -->
+							<skip>false</skip>
+							<!-- if no tag was found "near" this commit, just print the commit's 
+								id instead, helpful when you always expect this field to be not-empty -->
+							<always>false</always>
+							<!-- Controls the length of the abbreviated git commit it (git.commit.id.abbrev) -->
+							<abbrev>7</abbrev>
+							<!-- when the build is triggered while the repo is in "dirty state", 
+								append this suffix -->
+							<dirty>-dirty</dirty>
+							<!--always print using the "tag-commits_from_tag-g_commit_id-maybe_dirty" 
+								format, even if "on" a tag. The distance will always be 0 if you're "on" 
+								the tag. -->
+							<forceLongFormat>false</forceLongFormat>
+						</gitDescribe>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>com.google.code.maven-replacer-plugin</groupId>
+					<artifactId>replacer</artifactId>
+					<version>1.5.3</version>
+					<executions>
+						<execution>
+							<phase>process-sources</phase>
+							<goals>
+								<goal>replace</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>2.10.4</version>
+					<configuration>
+						<detectOfflineLinks>false</detectOfflineLinks>
+						<breakiterator>true</breakiterator>
+						<version>false</version>
+						<author>false</author>
+						<keywords>true</keywords>
+					</configuration>
+					<executions>
+						<execution>
+							<id>attach-javadocs</id>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>2.8.2</version>
+					<configuration>
+						<retryFailedDeploymentCount>10</retryFailedDeploymentCount>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<executions>
+						<execution>
+							<goals>
+								<goal>repackage</goal>
+							</goals>
+							<configuration>
+								<!-- ONLY available when spring-boot 1.4 -->
+								<includeSystemScope>true</includeSystemScope>
+								<executable>true</executable>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											com.google.code.maven-replacer-plugin
+										</groupId>
+										<artifactId>
+											replacer
+										</artifactId>
+										<versionRange>
+											[1.5.3,)
+										</versionRange>
+										<goals>
+											<goal>replace</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.apache.maven.plugins
+										</groupId>
+										<artifactId>
+											maven-dependency-plugin
+										</artifactId>
+										<versionRange>
+											[2.1,)
+										</versionRange>
+										<goals>
+											<goal>
+												copy-dependencies
+											</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>${checkstyle.version}</version>
+				<configuration>
+					<consoleOutput>true</consoleOutput>
+					<logViolationsToConsole>true</logViolationsToConsole>
+					<failsOnError>true</failsOnError>
+					<failOnViolation>true</failOnViolation>
+					<configLocation>${main.dir}/codequality/checkstyle.xml</configLocation>
+					<propertyExpansion>config_loc=${main.dir}</propertyExpansion>
+					<enableRulesSummary>false</enableRulesSummary>
+					<excludes>**/gen/**</excludes>
+					<!-- <includeTestSourceDirectory>true</includeTestSourceDirectory> -->
+				</configuration>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>checkstyle</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+			<!-- Requires setting 'export MAVEN_OPTS="-Xmx512m" ' -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>${findbugs.version}</version>
+				<configuration>
+					<findbugsXmlOutput>true</findbugsXmlOutput>
+					<findbugsXmlWithMessages>true</findbugsXmlWithMessages>
+					<xmlOutput>true</xmlOutput>
+					<threshold>Normal</threshold>
+					<effort>Default</effort>
+					<excludeFilterFile>${main.dir}/codequality/findbugs-exclude-filter.xml</excludeFilterFile>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>taglist-maven-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<tags>
+						<tag>TODO</tag>
+						<tag>NOPMD</tag>
+						<tag>NOTE</tag>
+					</tags>
+				</configuration>
+			</plugin>
+		</plugins>
+	</reporting>
+</project>
