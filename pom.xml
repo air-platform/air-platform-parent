@@ -214,7 +214,11 @@
 						<showWarnings>true</showWarnings>
 						<showDeprecation>true</showDeprecation>
 						<showWarnings>true</showWarnings>
-						<compilerArgument>-Xlint:-options</compilerArgument>
+						<compilerArgs>
+							<arg>-verbose</arg>
+							<arg>-parameters</arg>
+							<arg>-Xlint:all,-options,-path</arg>
+						</compilerArgs>
 						<meminitial>256m</meminitial>
 						<maxmem>1024m</maxmem>
 						<excludes>
