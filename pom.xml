@@ -11,7 +11,7 @@
 	<groupId>net.aircommunity</groupId>
 	<artifactId>air-platform-parent</artifactId>
 	<packaging>pom</packaging>
-	<version>0.1.0</version>
+	<version>1.0.0</version>
 
 	<name>Air Community Platform Parent</name>
 	<url>http://101.200.121.138:3000/airs/air-platform-parent</url>
