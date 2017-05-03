@@ -229,6 +229,7 @@
 				<plugin>
 					<groupId>pl.project13.maven</groupId>
 					<artifactId>git-commit-id-plugin</artifactId>
+					<version>2.1.9</version>
 					<executions>
 						<execution>
 							<goals>
@@ -241,8 +242,11 @@
 						<verbose>true</verbose>
 						<dotGitDirectory>${project.basedir}/.git</dotGitDirectory>
 						<skipPoms>false</skipPoms>
-						<generateGitPropertiesFile>false</generateGitPropertiesFile>
-						<generateGitPropertiesFilename>git.properties</generateGitPropertiesFilename>
+						<!-- should be false somehow necessary. otherwise the variables are not available in the pom -->
+						<generateGitPropertiesFile>true</generateGitPropertiesFile>
+						<!-- BUG: will be a wrong path if use ${project.build.outputDirectory} -->
+						<!-- <generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties</generateGitPropertiesFilename> -->
+						<generateGitPropertiesFilename>target/classes/git.properties</generateGitPropertiesFilename>
 						<failOnNoGitDirectory>true</failOnNoGitDirectory>
 						<gitDescribe>
 							<!-- don't generate the describe property -->
